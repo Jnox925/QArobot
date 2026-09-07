@@ -1,0 +1,72 @@
+/* ==========================================================================
+   Design tokens — QArobot
+   Tema: ciencia y robótica para niños.
+   Paleta pensada para transmitir energía y tecnología sin caer en el
+   "cream + serif + terracota" genérico: fondo claro y limpio, un azul
+   profundo tipo "espacio nocturno" para bloques de énfasis, y dos acentos
+   vivos (cian tecnológico + coral cálido) que se turnan según el contexto,
+   nunca ambos en el mismo elemento.
+   ========================================================================== */
+
+:root {
+  /* Color */
+  --color-bg: #f7f8fc;
+  --color-bg-panel: #ffffff;
+  --color-ink: #1e2233;
+  --color-ink-soft: #5b6478;
+  --color-space: #131a2b;
+  --color-cyan: #00c2a8;
+  --color-coral: #ff6b4a;
+  --color-border: #e3e6f0;
+
+  /* Tipografía */
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+
+  /* Radios y sombras: un único radio, una única sombra — coherencia, no
+     "SaaS card kit" con radios y sombras repetidas por decoración. */
+  --radius: 14px;
+  --shadow-card: 0 1px 2px rgba(19, 26, 43, 0.06), 0 6px 16px rgba(19, 26, 43, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: var(--font-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
