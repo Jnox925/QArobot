@@ -1,8 +1,23 @@
-# QArobot — scaffold
+## Repositorio GitHub
 
-Plataforma educativa de ciencia natural para niños: observaciones reales de
-animales (**iNaturalist**) y un quiz interactivo de ciencia (**Open Trivia
-Database**).
+QArobot-frontend
+https://github.com/Jnox925/QArobot/tree/main
+
+## Nombre de aplicación
+
+QArobot
+
+## Tecnologías aplicadas
+
+React
+JavaScript
+HTML5
+CSS3
+BEM
+React Router
+Fetch API
+Git
+GitHub
 
 ## Estructura
 
@@ -35,15 +50,15 @@ QArobot-frontend/
 
 ### Mapa de componentes mínimos
 
-| Componente requerido | Dónde está |
-|---|---|
-| `App` | `src/App.jsx` |
-| `Main` | `src/pages/Main/Main.jsx` |
-| `Header` | `src/components/Header/Header.jsx` |
-| `Navigation` | `src/components/Navigation/Navigation.jsx` |
-| `About` | `src/components/About/About.jsx` — **reemplaza los datos de ejemplo por los tuyos** |
-| `Footer` | `src/components/Footer/Footer.jsx` |
-| `Preloader` | `src/components/Preloader/Preloader.jsx` |
+| Componente requerido | Dónde está                                 |
+| -------------------- | ------------------------------------------ |
+| `App`                | `src/App.jsx`                              |
+| `Main`               | `src/pages/Main/Main.jsx`                  |
+| `Header`             | `src/components/Header/Header.jsx`         |
+| `Navigation`         | `src/components/Navigation/Navigation.jsx` |
+| `About`              | `src/components/About/About.jsx` —         |
+| `Footer`             | `src/components/Footer/Footer.jsx`         |
+| `Preloader`          | `src/components/Preloader/Preloader.jsx`   |
 
 ## Cómo correrlo
 
@@ -51,22 +66,6 @@ QArobot-frontend/
 npm install
 npm run dev
 ```
-
-## Por qué este cambio de fuentes de datos
-
-El proyecto pasó por dos APIs antes de llegar a esta combinación:
-
-1. **ImpactMojo** (versión original de la propuesta).
-2. **NASA + SpaceX** — pero la SpaceX API dejó de responder de forma
-   confiable (su repositorio fue archivado el 6 de junio de 2026), así que
-   se reemplazó por **Launch Library 2**.
-3. **iNaturalist + Open Trivia DB** (versión actual) — NASA y Launch
-   Library 2 seguían siendo técnicamente correctas, pero su contenido
-   (misiones espaciales, cohetes) es más avanzado de lo que le interesa a
-   un niño. iNaturalist da fotos reales de animales con nombres simples, y
-   Open Trivia DB agrega una actividad *interactiva* (un quiz), no solo
-   contenido de lectura — mejor encaje para un público infantil orientado a
-   educación.
 
 ## Notas importantes
 
@@ -97,13 +96,3 @@ El proyecto pasó por dos APIs antes de llegar a esta combinación:
   la consigna.
 - **`About` trae datos de ejemplo** (`Tu Nombre`, enlaces a `github.com/tu-usuario`,
   etc.) — ábrelo y reemplázalos por tu información real antes de entregar.
-
-## Siguientes pasos sugeridos
-
-1. Ajustar `perPage` / `amount` en `api.js` según cuánto contenido quieras
-   por página.
-2. Agregar un contador de aciertos al quiz (por ejemplo, sumando los
-   `QuizCard` respondidos correctamente en el estado de `Projects.jsx`).
-3. Si quieres variar el tipo de animal, cambia `iconic_taxa` en
-   `fetchNatureObservations` (por ejemplo `Insecta` para insectos, o quítalo
-   para incluir también plantas y hongos).
