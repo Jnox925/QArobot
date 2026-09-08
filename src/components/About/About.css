@@ -1,0 +1,42 @@
+.about {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 64px 20px;
+  text-align: center;
+}
+
+.about__title {
+  font-size: 1.6rem;
+  color: var(--color-space);
+}
+
+.about__name {
+  margin-top: 16px;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.about__bio {
+  margin-top: 8px;
+  color: var(--color-ink-soft);
+  font-size: 0.95rem;
+}
+
+.about__links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+}
+
+.about__link {
+  color: var(--color-cyan);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.about__link:hover {
+  text-decoration: underline;
+}

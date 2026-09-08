@@ -1,0 +1,25 @@
+.navigation__list {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation__link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.navigation__link:hover {
+  opacity: 1;
+}
+
+.navigation__link--active {
+  opacity: 1;
+  border-bottom: 2px solid var(--color-cyan);
+  padding-bottom: 2px;
+}

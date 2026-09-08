@@ -1,0 +1,38 @@
+.preloader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 0;
+}
+
+.preloader__icon {
+  width: 48px;
+  height: 48px;
+  animation: preloader-spin 1.1s linear infinite;
+}
+
+.preloader__track {
+  stroke: var(--color-border);
+}
+
+.preloader__arc {
+  stroke: var(--color-cyan);
+  stroke-dasharray: 90;
+  stroke-dashoffset: 60;
+}
+
+.preloader__text {
+  font-size: 0.9rem;
+  color: var(--color-ink-soft);
+  margin: 0;
+}
+
+@keyframes preloader-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
