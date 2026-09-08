@@ -1,12 +1,15 @@
 import "./About.css";
 
-const AUTHOR_NAME = "Tu Nombre";
+const AUTHOR_NAME = "Juan Carlos Agudelo Triana";
 const AUTHOR_BIO =
   "Estudiante de desarrollo web, construyendo este proyecto para practicar React, " +
   "consumo de APIs y diseño de componentes reutilizables.";
 const AUTHOR_LINKS = [
-  { label: "GitHub", href: "https://github.com/tu-usuario" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/tu-usuario" },
+  { label: "GitHub", href: "https://github.com/Jnox925" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/juan-carlos-agudelo-triana-115051198/",
+  },
 ];
 
 function About() {

@@ -65,8 +65,7 @@ export async function fetchNatureObservations(perPage = 8) {
         description: obs.place_guess
           ? `Observado en ${obs.place_guess}. Identificación verificada por la comunidad de iNaturalist.`
           : "Identificación verificada por la comunidad de iNaturalist.",
-        // Las fotos de iNaturalist vienen en "square" por defecto; pedimos
-        // "medium" para que se vean bien en la tarjeta.
+
         image: obs.photos[0].url.replace("square", "medium"),
         date: obs.observed_on || obs.created_at,
         link: obs.uri,
@@ -82,7 +81,6 @@ export async function fetchScienceQuiz(amount = 8, difficulty = "easy") {
     `&type=multiple&encode=url3986`;
   const data = await request(url);
 
-  // response_code 0 = OK. 1 = no hay suficientes preguntas para esos filtros.
   if (data.response_code !== 0) {
     throw new ApiError(
       "No hay suficientes preguntas para ese filtro. Intenta con otra dificultad.",
@@ -109,6 +107,16 @@ export async function fetchScienceQuiz(amount = 8, difficulty = "easy") {
   });
 }
 
+/**
+ * Punto único de entrada que usa la página Projects: combina las dos
+ * fuentes y aplica el filtro por tipo + búsqueda por texto.
+ *
+ * Usamos Promise.allSettled (no Promise.all) a propósito: si una sola fuente
+ * falla, igual mostramos los datos de la otra en vez de bloquear toda la
+ * página. Solo lanzamos error si TODAS las fuentes solicitadas fallan.
+ *
+ * @param {{ type: 'all'|'nature'|'quiz', q: string }} filters
+ */
 export async function fetchProjects(filters = { type: "all", q: "" }) {
   const requests = [];
 

@@ -33,12 +33,8 @@ function Projects() {
     }
   }, [type, query]);
 
-  // Se vuelve a pedir a la API cada vez que cambia el filtro de tipo.
-  // La búsqueda por texto (q) se dispara al enviar el formulario, no en
-  // cada tecla, para no saturar la API con una request por letra.
   useEffect(() => {
     loadProjects();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type]);
 
   function handleSearchSubmit(event) {
@@ -51,7 +47,8 @@ function Projects() {
       <header className="projects__header">
         <h2 className="projects__title">Explora y aprende</h2>
         <p className="projects__subtitle">
-          Animales reales de iNaturalist y un quiz de ciencia para poner a prueba lo aprendido.
+          Animales reales de iNaturalist y un quiz de ciencia para poner a
+          prueba lo aprendido.
         </p>
       </header>
 
@@ -83,10 +80,14 @@ function Projects() {
 
       {loading && <Preloader label="Preparando actividades…" />}
 
-      {!loading && error && <ErrorMessage error={error} onRetry={loadProjects} />}
+      {!loading && error && (
+        <ErrorMessage error={error} onRetry={loadProjects} />
+      )}
 
       {!loading && !error && projects.length === 0 && (
-        <p className="projects__empty">No encontramos actividades con esos filtros.</p>
+        <p className="projects__empty">
+          No encontramos actividades con esos filtros.
+        </p>
       )}
 
       {!loading && !error && projects.length > 0 && (
@@ -96,7 +97,7 @@ function Projects() {
               <QuizCard key={project.id} quiz={project} />
             ) : (
               <ProjectCard key={project.id} project={project} />
-            )
+            ),
           )}
         </div>
       )}
