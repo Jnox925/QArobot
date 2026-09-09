@@ -23,3 +23,10 @@
   border-bottom: 2px solid var(--color-cyan);
   padding-bottom: 2px;
 }
+
+@media (max-width: 360px) {
+  .navigation__list {
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+}

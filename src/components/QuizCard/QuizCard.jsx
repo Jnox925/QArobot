@@ -1,6 +1,12 @@
 import { useState } from "react";
 import "./QuizCard.css";
 
+/**
+ * Tarjeta de quiz interactiva para una pregunta de Open Trivia DB. A
+ * diferencia de ProjectCard (que solo muestra contenido), esta tiene estado
+ * propio: el niño elige una respuesta y la tarjeta le muestra si acertó,
+ * resaltando la opción correcta.
+ */
 function QuizCard({ quiz }) {
   const [selected, setSelected] = useState(null);
 
@@ -15,10 +21,8 @@ function QuizCard({ quiz }) {
 
   function optionClassName(option) {
     if (!answered) return "quiz-card__option";
-    if (option === correctAnswer)
-      return "quiz-card__option quiz-card__option--correct";
-    if (option === selected)
-      return "quiz-card__option quiz-card__option--incorrect";
+    if (option === correctAnswer) return "quiz-card__option quiz-card__option--correct";
+    if (option === selected) return "quiz-card__option quiz-card__option--incorrect";
     return "quiz-card__option quiz-card__option--disabled";
   }
 
@@ -53,9 +57,7 @@ function QuizCard({ quiz }) {
                 : "quiz-card__feedback quiz-card__feedback--incorrect"
             }
           >
-            {isCorrect
-              ? "¡Correcto! 🎉"
-              : `No era esa — la respuesta correcta es "${correctAnswer}".`}
+            {isCorrect ? "¡Correcto! 🎉" : `No era esa — la respuesta correcta es "${correctAnswer}".`}
           </p>
         )}
       </div>

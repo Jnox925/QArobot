@@ -10,7 +10,8 @@
 }
 
 .error-message__icon {
-  font-size: 2rem;
+  display: inline-flex;
+  color: var(--color-coral);
 }
 
 .error-message__title {

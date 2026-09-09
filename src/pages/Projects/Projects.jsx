@@ -1,5 +1,5 @@
-import { useEffect, useState, useCallback } from "react";
-import { fetchProjects } from "../../utils/api";
+import { useState, useEffect } from "react";
+import { useProjects } from "../../hooks/useProjects";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import QuizCard from "../../components/QuizCard/QuizCard";
 import Preloader from "../../components/Preloader/Preloader";
@@ -12,35 +12,31 @@ const FILTERS = [
   { value: "quiz", label: "Quiz de ciencia" },
 ];
 
+const PAGE_SIZE = 3;
+
 function Projects() {
-  const [projects, setProjects] = useState([]);
-  const [query, setQuery] = useState("");
-  const [type, setType] = useState("all");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { type, setType, projects, loading, error, search, reload } =
+    useProjects();
 
-  const loadProjects = useCallback(async () => {
-    setLoading(true);
-    setError(null);
+  const [queryInput, setQueryInput] = useState("");
 
-    try {
-      const data = await fetchProjects({ type, q: query });
-      setProjects(data);
-    } catch (err) {
-      setError(err);
-    } finally {
-      setLoading(false);
-    }
-  }, [type, query]);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   useEffect(() => {
-    loadProjects();
-  }, [type]);
+    setVisibleCount(PAGE_SIZE);
+  }, [projects]);
 
   function handleSearchSubmit(event) {
     event.preventDefault();
-    loadProjects();
+    search(queryInput);
   }
+
+  function handleShowMore() {
+    setVisibleCount((count) => count + PAGE_SIZE);
+  }
+
+  const visibleProjects = projects.slice(0, visibleCount);
+  const hasMore = visibleCount < projects.length;
 
   return (
     <section className="projects">
@@ -57,8 +53,8 @@ function Projects() {
           className="projects__search"
           type="search"
           placeholder="Buscar un animal…"
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
+          value={queryInput}
+          onChange={(event) => setQueryInput(event.target.value)}
         />
 
         <select
@@ -80,9 +76,7 @@ function Projects() {
 
       {loading && <Preloader label="Preparando actividades…" />}
 
-      {!loading && error && (
-        <ErrorMessage error={error} onRetry={loadProjects} />
-      )}
+      {!loading && error && <ErrorMessage error={error} onRetry={reload} />}
 
       {!loading && !error && projects.length === 0 && (
         <p className="projects__empty">
@@ -91,15 +85,27 @@ function Projects() {
       )}
 
       {!loading && !error && projects.length > 0 && (
-        <div className="projects__grid">
-          {projects.map((project) =>
-            project.type === "quiz" ? (
-              <QuizCard key={project.id} quiz={project} />
-            ) : (
-              <ProjectCard key={project.id} project={project} />
-            ),
+        <>
+          <div className="projects__grid">
+            {visibleProjects.map((project) =>
+              project.type === "quiz" ? (
+                <QuizCard key={project.id} quiz={project} />
+              ) : (
+                <ProjectCard key={project.id} project={project} />
+              ),
+            )}
+          </div>
+
+          {hasMore && (
+            <button
+              className="projects__show-more"
+              type="button"
+              onClick={handleShowMore}
+            >
+              Mostrar más
+            </button>
           )}
-        </div>
+        </>
       )}
     </section>
   );

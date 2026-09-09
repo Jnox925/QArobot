@@ -54,6 +54,13 @@
   background: var(--color-cyan);
 }
 
+.projects__search:focus-visible,
+.projects__filter:focus-visible,
+.projects__search-button:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+}
+
 .projects__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -64,4 +71,40 @@
   color: var(--color-ink-soft);
   text-align: center;
   padding: 48px 0;
+}
+
+.projects__show-more {
+  display: block;
+  margin: 28px auto 0;
+  padding: 10px 24px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg-panel);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.projects__show-more:hover {
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
+}
+
+.projects__show-more:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+}
+
+/* A 320px de ancho (el celular más angosto habitual) el grid de auto-fill
+   ya cae solo a una columna porque 240px no entra dos veces, pero el
+   padding lateral de .projects sobraba espacio en pantallas tan chicas;
+   lo reducimos para que las tarjetas no queden apretadas. */
+@media (max-width: 360px) {
+  .projects {
+    padding: 24px 12px 48px;
+  }
+
+  .projects__grid {
+    grid-template-columns: 1fr;
+  }
 }

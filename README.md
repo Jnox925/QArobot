@@ -77,8 +77,7 @@ npm run dev
   sobra para este proyecto.
 - **Open Trivia DB** (`opentdb.com`): usamos la categoría 17
   ("Science & Nature") y `difficulty=easy`. Tiene un límite de 1 solicitud
-  cada 5 segundos por IP — si pruebas la búsqueda muy seguido puede
-  devolver un error temporal, normal en esta API.
+  cada 5 segundos por IP.
 - `fetchProjects()` usa `Promise.allSettled` (no `Promise.all`): si una sola
   fuente falla, la otra igual se muestra. Solo se lanza el error de
   `<ErrorMessage />` si absolutamente ambas fuentes fallan.
@@ -93,6 +92,4 @@ npm run dev
   preguntas del quiz no se filtran por texto, porque cambiaría el conjunto de
   opciones ya mezcladas aleatoriamente.
 - Todas las clases siguen BEM (`bloque__elemento--modificador`), como pide
-  la consigna.
-- **`About` trae datos de ejemplo** (`Tu Nombre`, enlaces a `github.com/tu-usuario`,
-  etc.) — ábrelo y reemplázalos por tu información real antes de entregar.
+  los requisitos.
