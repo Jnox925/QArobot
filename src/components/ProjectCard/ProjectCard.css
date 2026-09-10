@@ -8,9 +8,6 @@
   overflow: hidden;
 }
 
-/* Modificador: destaca las observaciones verificadas por la comunidad
-   ("research grade" en iNaturalist) con un borde superior de acento en vez
-   de duplicar la sombra o el radio — la jerarquía se nota, no se decora. */
 .project-card--featured {
   border-top: 3px solid var(--color-coral);
 }

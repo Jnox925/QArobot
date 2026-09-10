@@ -1,0 +1,40 @@
+# Ejemplo de server block de nginx para QArobot.
+# Copiá este archivo a /etc/nginx/sites-available/qarobot en la VM y
+# ajustá "server_name" / "root" si hace falta. NO reemplaces la config que
+# ya tengas para api.bdnox.strangled.net: este es un server block nuevo y
+# aparte, nginx elige cuál usar mirando el header "Host" de cada request.
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name bdnox.strangled.net www.bdnox.strangled.net;
+
+    root /var/www/qarobot/dist;
+    index index.html;
+
+    # Clave para que React Router (BrowserRouter) funcione: si el archivo
+    # pedido no existe tal cual en disco, servimos index.html y dejamos que
+    # React decida qué mostrar. Sin esto, refrescar en /projects o /about
+    # da 404 directamente desde nginx, antes de que React entre en juego.
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Los archivos de /assets/ ya vienen con hash en el nombre (los pone
+    # Vite en cada build), así que son seguros de cachear agresivamente:
+    # si el contenido cambia, cambia el nombre del archivo también.
+    location /assets/ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+}
+
+# Después de instalar este archivo:
+#   sudo ln -s /etc/nginx/sites-available/qarobot /etc/nginx/sites-enabled/
+#   sudo nginx -t          # valida la sintaxis antes de aplicar nada
+#   sudo systemctl reload nginx
+#
+# Para HTTPS, corré certbot DESPUÉS de que este server block ya esté activo
+# y sirviendo por HTTP sin errores (certbot lo detecta y le agrega el
+# bloque "listen 443" + el redirect automáticamente):
+#   sudo certbot --nginx -d bdnox.strangled.net -d www.bdnox.strangled.net

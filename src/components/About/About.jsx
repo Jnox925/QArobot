@@ -1,12 +1,5 @@
 import "./About.css";
 
-/**
- * Componente de presentación puro: muestra información sobre el autor del
- * proyecto. No recibe props ni tiene estado.
- *
- * IMPORTANTE: los datos de abajo son un placeholder. Reemplaza AUTHOR_NAME,
- * AUTHOR_BIO y los enlaces por los tuyos antes de entregar el proyecto.
- */
 const AUTHOR_NAME = "Juan Carlos Agudelo Triana";
 const AUTHOR_BIO =
   "Estudiante de desarrollo web, construyendo este proyecto para practicar React, " +
