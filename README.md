@@ -4,7 +4,7 @@ Plataforma educativa de ciencia natural para niños: observaciones reales de
 animales (**iNaturalist**) y un quiz interactivo de ciencia (**Open Trivia
 Database**).
 
-**🔗 Demo publicada:** https://bdnox.strangled.net/
+**🔗 Demo publicada:** https://bdnox.strangled.net/projects
 
 ## Repositorio GitHub
 
